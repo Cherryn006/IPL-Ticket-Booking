@@ -4,11 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book IPL Tickets</title>
+    <title>IPL Ticket Booking Form</title>
+
     <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
 </head>
 <body>
 
+    <!-- Navigation -->
     <header>
         <nav class="navbar">
             <h2 class="logo">IPL TICKETS</h2>
@@ -16,12 +19,13 @@
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="index.html#matches">Matches</a></li>
-                <li><a href="booking.html">Book Ticket</a></li>
+                <li><a href="#booking-form">Book Ticket</a></li>
                 <li><a href="index.html#guidelines">Guidelines</a></li>
             </ul>
         </nav>
     </header>
 
+    <!-- Booking Form -->
     <section class="booking-section">
 
         <div class="booking-container">
@@ -29,7 +33,7 @@
             <h1>IPL Ticket Booking Form</h1>
             <p>Fill in your details to book your favourite match.</p>
 
-            <form action="#" method="get">
+            <form action="#" method="get" id="booking-form">
 
                 <!-- Personal Details -->
                 <fieldset>
@@ -66,6 +70,7 @@
                     <legend>Ticket Details</legend>
 
                     <label for="match">Select Match</label>
+
                     <select id="match" name="match" required>
                         <option value="">-- Select Match --</option>
                         <option value="RCB vs CSK">RCB vs CSK</option>
@@ -75,6 +80,7 @@
                     </select>
 
                     <label for="stand">Select Stand Category</label>
+
                     <select id="stand" name="stand" required>
                         <option value="">-- Select Stand --</option>
                         <option value="General">General</option>
@@ -83,6 +89,7 @@
                     </select>
 
                     <label for="tickets">Number of Tickets</label>
+
                     <input type="number"
                            id="tickets"
                            name="tickets"
@@ -91,7 +98,7 @@
                            required>
                 </fieldset>
 
-                <!-- Preferences -->
+                <!-- Additional Preferences -->
                 <fieldset>
                     <legend>Additional Preferences</legend>
 
@@ -101,6 +108,7 @@
                            id="veg"
                            name="food"
                            value="Vegetarian">
+
                     <label for="veg" class="inline-label">
                         Vegetarian
                     </label>
@@ -109,6 +117,7 @@
                            id="nonveg"
                            name="food"
                            value="Non-Vegetarian">
+
                     <label for="nonveg" class="inline-label">
                         Non-Vegetarian
                     </label>
@@ -123,14 +132,20 @@
                     <label for="terms" class="inline-label">
                         I agree to the terms and conditions.
                     </label>
+
                 </fieldset>
 
-                <!-- Buttons -->
+                <!-- Form Buttons -->
                 <div class="form-buttons">
-                    <button type="submit">Submit Booking</button>
+
+                    <button type="submit">
+                        Submit Booking
+                    </button>
+
                     <button type="reset" class="reset-btn">
                         Reset Form
                     </button>
+
                 </div>
 
             </form>
@@ -143,6 +158,11 @@
 
     </section>
 
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"
+         role="status" aria-live="polite"></div>
+
+    <!-- Footer -->
     <footer>
         <p>© 2026 IPL Ticket Booking | All Rights Reserved</p>
     </footer>
