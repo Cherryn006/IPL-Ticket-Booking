@@ -1,12 +1,11 @@
 
-/* =====================================
-   ACTIVITY 5: TOAST NOTIFICATION
-===================================== */
+// =====================================
+// ACTIVITY 5: TOAST NOTIFICATION
+// =====================================
 
 let toastTimer;
 
 function showToast(message) {
-
     const toast = document.getElementById("toast");
 
     if (!toast) return;
@@ -22,16 +21,14 @@ function showToast(message) {
 }
 
 
-/* =====================================
-   ACTIVITY 5: SMOOTH SCROLLING
-===================================== */
+// =====================================
+// ACTIVITY 5: SMOOTH SCROLLING
+// =====================================
 
 function scrollToBookingForm() {
-
     const bookingForm = document.getElementById("booking-form");
 
     if (bookingForm) {
-
         bookingForm.scrollIntoView({
             behavior: "smooth",
             block: "start"
@@ -42,13 +39,131 @@ function scrollToBookingForm() {
 }
 
 
-/* =====================================
-   ACTIVITY 7: LIVE BOOKING SUMMARY
-===================================== */
+// =====================================
+// RUN AFTER HTML PAGE LOADS
+// =====================================
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    // Smooth scrolling after opening the booking page
+    // =================================
+    // ACTIVITY 8: HAMBURGER MENU
+    // =================================
+
+    const menuToggle = document.getElementById("menu-toggle");
+    const navLinks = document.getElementById("nav-links");
+
+    if (menuToggle && navLinks) {
+
+        menuToggle.addEventListener("click", function () {
+
+            const isOpen = navLinks.classList.toggle("open");
+
+            menuToggle.setAttribute("aria-expanded", isOpen);
+
+            menuToggle.setAttribute(
+                "aria-label",
+                isOpen ? "Close navigation menu" : "Open navigation menu"
+            );
+
+        });
+
+        // Close menu after clicking a navigation link
+
+        navLinks.querySelectorAll("a").forEach(function (link) {
+
+            link.addEventListener("click", function () {
+                navLinks.classList.remove("open");
+                menuToggle.setAttribute("aria-expanded", "false");
+                menuToggle.setAttribute("aria-label", "Open navigation menu");
+            });
+
+        });
+    }
+
+
+    // =================================
+    // ACTIVITY 8: TEAM FILTER
+    // =================================
+
+    const teamFilter = document.getElementById("team-filter");
+
+    const matchCards = document.querySelectorAll(".match-card");
+
+    const noMatches = document.getElementById("no-matches");
+
+    if (teamFilter && matchCards.length > 0) {
+
+        teamFilter.addEventListener("change", function () {
+
+            const selectedTeam = teamFilter.value;
+
+            let visibleCount = 0;
+
+            matchCards.forEach(function (card) {
+
+                const teams = card.dataset.team.split(" ");
+
+                const shouldShow =
+                    selectedTeam === "all" ||
+                    teams.includes(selectedTeam);
+
+                card.hidden = !shouldShow;
+
+                if (shouldShow) {
+                    visibleCount++;
+                }
+
+            });
+
+            if (noMatches) {
+                noMatches.hidden = visibleCount !== 0;
+            }
+
+            showToast("Match list updated!");
+        });
+    }
+
+
+    // =================================
+    // ACTIVITY 8: GRID AND LIST VIEW
+    // =================================
+
+    const matchContainer = document.getElementById("match-container");
+
+    const gridButton = document.getElementById("grid-view");
+
+    const listButton = document.getElementById("list-view");
+
+    if (matchContainer && gridButton && listButton) {
+
+        gridButton.addEventListener("click", function () {
+
+            matchContainer.classList.remove("list-view");
+
+            gridButton.classList.add("active");
+
+            listButton.classList.remove("active");
+
+            showToast("Grid view selected!");
+        });
+
+
+        listButton.addEventListener("click", function () {
+
+            matchContainer.classList.add("list-view");
+
+            listButton.classList.add("active");
+
+            gridButton.classList.remove("active");
+
+            showToast("List view selected!");
+        });
+    }
+
+
+    // =================================
+    // ACTIVITY 5: BOOKING PAGE SCROLL
+    // =================================
 
     if (window.location.hash === "#booking-form") {
 
@@ -58,16 +173,15 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    // Select form elements using DOM selectors
+    // =================================
+    // ACTIVITY 7: LIVE BOOKING SUMMARY
+    // =================================
 
     const matchSelect = document.getElementById("match");
 
     const standSelect = document.querySelector("#stand");
 
     const quantityInput = document.getElementById("tickets");
-
-
-    // Select Booking Summary elements
 
     const summaryMatch = document.getElementById("summary-match");
 
@@ -80,121 +194,118 @@ document.addEventListener("DOMContentLoaded", function () {
     const summaryTotal = document.getElementById("summary-total");
 
 
-    // Check whether required elements exist
+    // Run only when the booking form and summary exist
 
     if (
-        !matchSelect ||
-        !standSelect ||
-        !quantityInput ||
-        !summaryMatch ||
-        !summaryStand ||
-        !summaryQuantity ||
-        !summaryPrice ||
-        !summaryTotal
+        matchSelect &&
+        standSelect &&
+        quantityInput &&
+        summaryMatch &&
+        summaryStand &&
+        summaryQuantity &&
+        summaryPrice &&
+        summaryTotal
     ) {
-        return;
-    }
+
+        // Update Booking Summary
+
+        function updateBookingSummary() {
+
+            const match = matchSelect.value;
+
+            const standOption = standSelect.selectedOptions[0];
+
+            const stand = standSelect.value;
+
+            const price = Number(standOption.dataset.price) || 0;
+
+            const quantity = Math.max(
+                1,
+                Math.min(10, Number(quantityInput.value) || 1)
+            );
+
+            const total = price * quantity;
 
 
-    // Function to update Booking Summary
+            // Display selected details
 
-    function updateBookingSummary() {
+            summaryMatch.textContent = match || "Not selected";
 
-        const match = matchSelect.value;
+            summaryStand.textContent = stand || "Not selected";
 
-        const standOption = standSelect.selectedOptions[0];
+            summaryQuantity.textContent = quantity;
 
-        const stand = standSelect.value;
+            summaryPrice.textContent =
+                "₹" + price.toLocaleString("en-IN");
 
-        const price = Number(standOption.dataset.price) || 0;
+            summaryTotal.textContent =
+                "₹" + total.toLocaleString("en-IN");
 
-        const quantity = Math.max(
-            1,
-            Math.min(10, Number(quantityInput.value) || 1)
+
+            showToast("Booking summary updated!");
+        }
+
+
+        // Change event listeners
+
+        matchSelect.addEventListener(
+            "change",
+            updateBookingSummary
         );
 
-        const total = price * quantity;
+        standSelect.addEventListener(
+            "change",
+            updateBookingSummary
+        );
+
+        quantityInput.addEventListener(
+            "change",
+            updateBookingSummary
+        );
+
+        quantityInput.addEventListener(
+            "input",
+            updateBookingSummary
+        );
 
 
-        // Display selected details
+        // =================================
+        // BOOKING FORM SUBMISSION
+        // =================================
 
-        summaryMatch.textContent = match || "Not selected";
+        const ticketForm = document.getElementById("ticket-form");
 
-        summaryStand.textContent = stand || "Not selected";
+        if (ticketForm) {
 
-        summaryQuantity.textContent = quantity;
+            ticketForm.addEventListener("submit", function (event) {
 
-        summaryPrice.textContent =
-            "₹" + price.toLocaleString("en-IN");
+                event.preventDefault();
 
-        summaryTotal.textContent =
-            "₹" + total.toLocaleString("en-IN");
+                updateBookingSummary();
 
+                showToast("Booking details submitted successfully!");
 
-        // Display Toast Notification
-
-        showToast("Booking summary updated!");
-    }
+            });
 
 
-    // Add change event listeners
+            // Reset summary when form is reset
 
-    matchSelect.addEventListener(
-        "change",
-        updateBookingSummary
-    );
+            ticketForm.addEventListener("reset", function () {
 
-    standSelect.addEventListener(
-        "change",
-        updateBookingSummary
-    );
+                setTimeout(function () {
 
-    quantityInput.addEventListener(
-        "change",
-        updateBookingSummary
-    );
+                    summaryMatch.textContent = "Not selected";
+                    summaryStand.textContent = "Not selected";
+                    summaryQuantity.textContent = "0";
+                    summaryPrice.textContent = "₹0";
+                    summaryTotal.textContent = "₹0";
 
-    quantityInput.addEventListener(
-        "input",
-        updateBookingSummary
-    );
+                    showToast("Booking form reset!");
 
+                }, 0);
 
-    // Form submission
-
-    const ticketForm = document.getElementById("ticket-form");
-
-    if (ticketForm) {
-
-        ticketForm.addEventListener("submit", function (event) {
-
-            event.preventDefault();
-
-            updateBookingSummary();
-
-            showToast("Booking details submitted successfully!");
-
-        });
-
-
-        // Reset summary when the form is reset
-
-        ticketForm.addEventListener("reset", function () {
-
-            setTimeout(function () {
-
-                summaryMatch.textContent = "Not selected";
-                summaryStand.textContent = "Not selected";
-                summaryQuantity.textContent = "0";
-                summaryPrice.textContent = "₹0";
-                summaryTotal.textContent = "₹0";
-
-                showToast("Booking form reset!");
-
-            }, 0);
-
-        });
-
+            });
+        }
     }
 
 });

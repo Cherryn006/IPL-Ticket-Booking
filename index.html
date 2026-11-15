@@ -11,11 +11,21 @@
 <body>
 
     <!-- Navigation Bar -->
-    <header>
+    <header class="site-header">
         <nav class="navbar">
-            <h2 class="logo">IPL TICKETS</h2>
+            <a href="index.html" class="logo">IPL TICKETS</a>
 
-            <ul>
+            <button class="menu-toggle"
+                    id="menu-toggle"
+                    aria-label="Open navigation menu"
+                    aria-expanded="false"
+                    aria-controls="nav-links">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-links" id="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="#matches">Matches</a></li>
                 <li><a href="Booking.html#booking-form">Book Ticket</a></li>
@@ -26,15 +36,18 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <h1>Experience The Stadium Energy Live!</h1>
-        <p>Book your favourite IPL match tickets today.</p>
-
-        <a href="#matches" class="btn">View Schedule</a>
-        <a href="Booking.html#booking-form" class="btn">Book Ticket</a>
+        <div class="hero-content">
+            <h1>Experience The Stadium Energy Live!</h1>
+            <p>Book your favourite IPL match tickets today.</p>
+            <a href="#matches" class="btn">View Schedule</a>
+            <a href="Booking.html#booking-form" class="btn btn-outline">
+                Book Ticket
+            </a>
+        </div>
     </section>
 
     <!-- About Section -->
-    <section class="about">
+    <section class="about section">
         <h2>About IPL</h2>
         <p>
             Enjoy exciting cricket matches, support your favourite teams
@@ -43,70 +56,150 @@
     </section>
 
     <!-- Match Schedule -->
-    <section class="matches" id="matches">
+    <section class="matches section" id="matches">
+
         <h2>Match Schedule</h2>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Match</th>
-                    <th>Teams</th>
-                    <th>Venue</th>
-                    <th>Ticket Price</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
+        <!-- Filter and Layout Controls -->
+        <div class="match-controls">
 
-            <tbody>
-                <tr>
-                    <td>Match 1</td>
-                    <td>RCB vs CSK</td>
-                    <td>Bengaluru</td>
-                    <td>₹1,000 onwards</td>
-                    <td>
-                        <a href="Booking.html#booking-form" class="small-btn">Book</a>
-                    </td>
-                </tr>
+            <div class="filter-control">
+                <label for="team-filter">Filter by Team:</label>
 
-                <tr>
-                    <td>Match 2</td>
-                    <td>MI vs KKR</td>
-                    <td>Mumbai</td>
-                    <td>₹1,000 onwards</td>
-                    <td>
-                        <a href="Booking.html#booking-form" class="small-btn">Book</a>
-                    </td>
-                </tr>
+                <select id="team-filter">
+                    <option value="all">All Teams</option>
+                    <option value="RCB">RCB</option>
+                    <option value="CSK">CSK</option>
+                    <option value="MI">MI</option>
+                    <option value="KKR">KKR</option>
+                </select>
+            </div>
 
-                <tr>
-                    <td>Match 3</td>
-                    <td>CSK vs MI</td>
-                    <td>Chennai</td>
-                    <td>₹1,000 onwards</td>
-                    <td>
-                        <a href="Booking.html#booking-form" class="small-btn">Book</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+            <div class="view-control">
+                <button type="button" id="grid-view" class="view-btn active">
+                    Grid View
+                </button>
+
+                <button type="button" id="list-view" class="view-btn">
+                    List View
+                </button>
+            </div>
+
+        </div>
+
+        <!-- Match Cards -->
+        <div class="match-grid" id="match-container">
+
+            <article class="match-card" data-team="RCB CSK">
+                <div class="match-card-top">
+                    <span class="match-label">Match 1</span>
+                    <span class="team-tag">RCB vs CSK</span>
+                </div>
+
+                <h3>Royal Challengers Bengaluru vs Chennai Super Kings</h3>
+                <p><strong>Venue:</strong> Bengaluru</p>
+                <p><strong>Ticket Price:</strong> ₹1,000 onwards</p>
+
+                <a href="Booking.html#booking-form" class="small-btn">
+                    Book Tickets
+                </a>
+            </article>
+
+            <article class="match-card" data-team="MI KKR">
+                <div class="match-card-top">
+                    <span class="match-label">Match 2</span>
+                    <span class="team-tag">MI vs KKR</span>
+                </div>
+
+                <h3>Mumbai Indians vs Kolkata Knight Riders</h3>
+                <p><strong>Venue:</strong> Mumbai</p>
+                <p><strong>Ticket Price:</strong> ₹1,000 onwards</p>
+
+                <a href="Booking.html#booking-form" class="small-btn">
+                    Book Tickets
+                </a>
+            </article>
+
+            <article class="match-card" data-team="CSK MI">
+                <div class="match-card-top">
+                    <span class="match-label">Match 3</span>
+                    <span class="team-tag">CSK vs MI</span>
+                </div>
+
+                <h3>Chennai Super Kings vs Mumbai Indians</h3>
+                <p><strong>Venue:</strong> Chennai</p>
+                <p><strong>Ticket Price:</strong> ₹1,000 onwards</p>
+
+                <a href="Booking.html#booking-form" class="small-btn">
+                    Book Tickets
+                </a>
+            </article>
+
+            <article class="match-card" data-team="KKR RCB">
+                <div class="match-card-top">
+                    <span class="match-label">Match 4</span>
+                    <span class="team-tag">KKR vs RCB</span>
+                </div>
+
+                <h3>Kolkata Knight Riders vs Royal Challengers Bengaluru</h3>
+                <p><strong>Venue:</strong> Kolkata</p>
+                <p><strong>Ticket Price:</strong> ₹1,000 onwards</p>
+
+                <a href="Booking.html#booking-form" class="small-btn">
+                    Book Tickets
+                </a>
+            </article>
+
+        </div>
+
+        <p id="no-matches" class="no-matches" hidden>
+            No matches found for this team.
+        </p>
+
     </section>
 
-    <!-- Guidelines -->
-    <section class="guidelines" id="guidelines">
+    <!-- Guidelines Section -->
+    <section class="guidelines section" id="guidelines">
+
         <h2>Booking Guidelines</h2>
-        <ul>
-            <li>Enter valid personal details.</li>
-            <li>Select your preferred match.</li>
-            <li>Choose your stand category.</li>
-            <li>Select between 1 and 10 tickets.</li>
-            <li>Check your booking summary before submitting.</li>
-        </ul>
+
+        <div class="guideline-grid">
+
+            <article class="guideline-card">
+                <h3>01. Enter Details</h3>
+                <p>
+                    Provide your correct name, email address and phone number
+                    in the booking form.
+                </p>
+            </article>
+
+            <article class="guideline-card">
+                <h3>02. Select Tickets</h3>
+                <p>
+                    Choose your preferred match, stand category and ticket
+                    quantity.
+                </p>
+            </article>
+
+            <article class="guideline-card">
+                <h3>03. Check Summary</h3>
+                <p>
+                    Review your selected match and total ticket price
+                    before submitting.
+                </p>
+            </article>
+
+        </div>
     </section>
 
     <!-- Footer -->
     <footer>
         <p>© 2026 IPL Ticket Booking | Student Project</p>
     </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"
+         role="status" aria-live="polite"></div>
 
 </body>
 </html>
