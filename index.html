@@ -5,13 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IPL Ticket Booking</title>
-
     <link rel="stylesheet" href="styles.css">
     <script src="app.js" defer></script>
 </head>
 <body>
 
-    <!-- Navigation -->
+    <!-- Navigation Bar -->
     <header>
         <nav class="navbar">
             <h2 class="logo">IPL TICKETS</h2>
@@ -28,121 +27,85 @@
     <!-- Hero Section -->
     <section class="hero">
         <h1>Experience The Stadium Energy Live!</h1>
-        <p>Watch your favourite IPL teams live in the stadium.</p>
+        <p>Book your favourite IPL match tickets today.</p>
 
         <a href="#matches" class="btn">View Schedule</a>
-
-        <a href="Booking.html#booking-form" class="btn">
-            Book Ticket
-        </a>
+        <a href="Booking.html#booking-form" class="btn">Book Ticket</a>
     </section>
 
-    <!-- About -->
+    <!-- About Section -->
     <section class="about">
         <h2>About IPL</h2>
         <p>
-            The Indian Premier League is one of the most exciting
-            cricket tournaments. Enjoy live matches, amazing teams
-            and unforgettable stadium experiences.
+            Enjoy exciting cricket matches, support your favourite teams
+            and experience the stadium atmosphere.
         </p>
     </section>
 
     <!-- Match Schedule -->
-    <section id="matches" class="section">
-        <h2>Upcoming Matches</h2>
+    <section class="matches" id="matches">
+        <h2>Match Schedule</h2>
 
         <table>
-            <tr>
-                <th>Match</th>
-                <th>Venue</th>
-                <th>General</th>
-                <th>Premium</th>
-                <th>VIP</th>
-                <th>Booking</th>
-            </tr>
+            <thead>
+                <tr>
+                    <th>Match</th>
+                    <th>Teams</th>
+                    <th>Venue</th>
+                    <th>Ticket Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
 
-            <tr>
-                <td>RCB vs CSK</td>
-                <td>Bengaluru</td>
-                <td>₹500</td>
-                <td>₹1500</td>
-                <td>₹3000</td>
-                <td>
-                    <a href="Booking.html#booking-form" class="small-btn">
-                        Book
-                    </a>
-                </td>
-            </tr>
+            <tbody>
+                <tr>
+                    <td>Match 1</td>
+                    <td>RCB vs CSK</td>
+                    <td>Bengaluru</td>
+                    <td>₹1,000 onwards</td>
+                    <td>
+                        <a href="Booking.html#booking-form" class="small-btn">Book</a>
+                    </td>
+                </tr>
 
-            <tr>
-                <td>MI vs KKR</td>
-                <td>Mumbai</td>
-                <td>₹600</td>
-                <td>₹1600</td>
-                <td>₹3500</td>
-                <td>
-                    <a href="Booking.html#booking-form" class="small-btn">
-                        Book
-                    </a>
-                </td>
-            </tr>
+                <tr>
+                    <td>Match 2</td>
+                    <td>MI vs KKR</td>
+                    <td>Mumbai</td>
+                    <td>₹1,000 onwards</td>
+                    <td>
+                        <a href="Booking.html#booking-form" class="small-btn">Book</a>
+                    </td>
+                </tr>
 
-            <tr>
-                <td>CSK vs MI</td>
-                <td>Chennai</td>
-                <td>₹500</td>
-                <td>₹1400</td>
-                <td>₹3200</td>
-                <td>
-                    <a href="Booking.html#booking-form" class="small-btn">
-                        Book
-                    </a>
-                </td>
-            </tr>
-
-            <tr>
-                <td>RCB vs MI</td>
-                <td>Bengaluru</td>
-                <td>₹700</td>
-                <td>₹1800</td>
-                <td>₹4000</td>
-                <td>
-                    <a href="Booking.html#booking-form" class="small-btn">
-                        Book
-                    </a>
-                </td>
-            </tr>
+                <tr>
+                    <td>Match 3</td>
+                    <td>CSK vs MI</td>
+                    <td>Chennai</td>
+                    <td>₹1,000 onwards</td>
+                    <td>
+                        <a href="Booking.html#booking-form" class="small-btn">Book</a>
+                    </td>
+                </tr>
+            </tbody>
         </table>
     </section>
 
-    <!-- Teams -->
-    <section class="section">
-        <h2>Popular IPL Teams</h2>
-
-        <div class="team-container">
-            <div class="team-card">Royal Challengers Bengaluru</div>
-            <div class="team-card">Chennai Super Kings</div>
-            <div class="team-card">Mumbai Indians</div>
-            <div class="team-card">Kolkata Knight Riders</div>
-        </div>
-    </section>
-
     <!-- Guidelines -->
-    <section id="guidelines" class="section guidelines">
+    <section class="guidelines" id="guidelines">
         <h2>Booking Guidelines</h2>
-
         <ul>
-            <li>Enter correct personal details.</li>
+            <li>Enter valid personal details.</li>
             <li>Select your preferred match.</li>
-            <li>Choose your preferred stand category.</li>
+            <li>Choose your stand category.</li>
             <li>Select between 1 and 10 tickets.</li>
-            <li>Agree to the booking terms.</li>
+            <li>Check your booking summary before submitting.</li>
         </ul>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>© 2026 IPL Ticket Booking | All Rights Reserved</p>
+        <p>© 2026 IPL Ticket Booking | Student Project</p>
     </footer>
 
 </body>
